@@ -1,11 +1,9 @@
-package de.amedon.red.ui;
+package de.desertfox.snippets.javafx;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
 import java.util.Optional;
 
-import de.amedon.red.ui.dialogs.EditableChooseDialog;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -15,23 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
 public class FXDialogs {
-	
-	public static String openChooseDialog(String title, String headerText, String ContentText, List<String> choices, boolean editable) {
-		EditableChooseDialog<String> dialog = new EditableChooseDialog<String>(choices.get(0), choices);
-		if (editable) {
-			dialog.setEditable(editable);
-		}
-		dialog.setTitle(title);
-		dialog.setHeaderText(headerText);
-		dialog.setContentText(ContentText);
-		Optional<String> result = dialog.showAndWait();
-		return result.isPresent() ? result.get() : null;
-	}
-	
+
 	public static String openInputDialog(String title, String headerText, String ContentText) {
 		return openInputDialog(title, headerText, ContentText, null);
 	}
-	
+
 	public static String openInputDialog(String title, String headerText, String ContentText, String defaultContent) {
 		TextInputDialog dialog = new TextInputDialog(defaultContent);
 		dialog.setTitle(title);
@@ -40,21 +26,17 @@ public class FXDialogs {
 		Optional<String> result = dialog.showAndWait();
 		return result.isPresent() ? result.get() : null;
 	}
-	
-	public static String openChooseDialog(String title, String headerText, String ContentText, List<String> choices) {
-		return openChooseDialog(title, headerText, ContentText, choices, false);
-	}
-	
+
 	public static void info(String title, String headerText, String ContentText) {
 		dialog(title, headerText, ContentText, AlertType.INFORMATION);
 	}
-	
+
 	public static void error(String title, String headerText, String ContentText) {
 		dialog(title, headerText, ContentText, AlertType.ERROR);
 	}
-	
+
 	public static void exception(Exception e) {
-		exception("Exception Dialog", "Bei der Verarbeitung ist ein Fehler aufgetreten","", e);
+		exception("Exception Dialog", "Bei der Verarbeitung ist ein Fehler aufgetreten", "", e);
 	}
 
 	public static void exception(String title, String headerText, String ContentText, Exception e) {
@@ -89,7 +71,7 @@ public class FXDialogs {
 		alert.getDialogPane().setExpandableContent(expContent);
 		alert.showAndWait();
 	}
-	
+
 	public static void dialog(String title, String headerText, String ContentText, AlertType type) {
 		Alert alert = new Alert(type);
 		alert.setTitle(title);
@@ -98,5 +80,5 @@ public class FXDialogs {
 
 		alert.showAndWait();
 	}
-	
+
 }
