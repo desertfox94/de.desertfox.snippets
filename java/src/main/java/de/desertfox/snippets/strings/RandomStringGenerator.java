@@ -1,4 +1,4 @@
-package de.desertfox.snippets;
+package de.desertfox.snippets.strings;
 
 import java.util.Random;
 

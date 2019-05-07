@@ -1,4 +1,4 @@
-package de.desertfox.snippets.CalendarTool;
+package de.desertfox.snippets.calendar;
 
 import java.io.BufferedReader;
 import java.io.IOException;

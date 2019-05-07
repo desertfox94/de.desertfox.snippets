@@ -1,4 +1,4 @@
-package de.desertfox.snippets.CalendarTool;
+package de.desertfox.snippets.calendar;
 
 import java.util.Calendar;
 import java.util.HashMap;
