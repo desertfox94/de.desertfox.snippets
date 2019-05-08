@@ -22,7 +22,7 @@ public class NodeListIterator implements Iterator<Node> {
 
 	@Override
 	public Node next() {
-		return nodeList.item(++i);
+		return nodeList.item(i++);
 	}
 
 }

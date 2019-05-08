@@ -1,6 +1,7 @@
 package de.desertfox.snippets.xml;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.xpath.XPathConstants;
@@ -49,7 +50,7 @@ public class XPathEvaluator {
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	public List<Node> eval(String xpath) throws XPathExpressionException {
