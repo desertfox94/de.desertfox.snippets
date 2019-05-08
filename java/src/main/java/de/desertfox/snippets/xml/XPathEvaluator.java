@@ -1,6 +1,7 @@
 package de.desertfox.snippets.xml;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
 
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
@@ -8,6 +9,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class XPathEvaluator {
@@ -18,19 +20,19 @@ public class XPathEvaluator {
 		this.document = document;
 	}
 
-	public NList nodesByTagAndAttribute(String tag, SimpleEntry<String, String> attribute) throws XPathExpressionException {
+	public List<Node> nodesByTagAndAttribute(String tag, SimpleEntry<String, String> attribute) throws XPathExpressionException {
 		return getElementsBy(new String[] { tag }, attribute);
 	}
 
-	public NList nodesByTagHierarchy(String... tags) throws XPathExpressionException {
+	public List<Node> nodesByTagHierarchy(String... tags) throws XPathExpressionException {
 		return eval(buildTagHierarchy(tags));
 	}
 
-	public NList nodesByTag(String tagName) throws XPathExpressionException {
+	public List<Node> nodesByTag(String tagName) throws XPathExpressionException {
 		return eval(buildTagHierarchy(tagName));
 	}
 
-	public NList getElementsBy(String[] nodeHierarchy, SimpleEntry<String, String> attribute) {
+	public List<Node> getElementsBy(String[] nodeHierarchy, SimpleEntry<String, String> attribute) {
 		try {
 			String xpathString = buildTagHierarchy(nodeHierarchy);
 			if (attribute != null) {
@@ -45,13 +47,12 @@ public class XPathEvaluator {
 			}
 			return eval(xpathString);
 		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public NList eval(String xpath) throws XPathExpressionException {
+	public List<Node> eval(String xpath) throws XPathExpressionException {
 		XPathFactory xPathfactory = XPathFactory.newInstance();
 		XPathExpression expr = xPathfactory.newXPath().compile(xpath);
 		return new NList((NodeList)expr.evaluate(document.getDocumentElement(), XPathConstants.NODESET));
